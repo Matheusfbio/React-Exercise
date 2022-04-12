@@ -56,7 +56,7 @@ export default function App() {
       </section>
       <hr />
       <section>
-        <h2>Albums of {selectedArtist}</h2>
+        <h2>Album of {selectedArtist}</h2>
         <ul>
           {albums.map((alb) => (
             <li>
