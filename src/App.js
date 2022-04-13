@@ -29,9 +29,9 @@ export default function App() {
 
   async function handleClick(artist) {
    
-    const ShowAlbums = await getAlbums(artist.id);
-    const Albums = ShowAlbums.map((obj) => obj.title);
-    setAlbums(Albums);
+    const albums = await getAlbums(artist.id);
+    const albumsTitle = albums.map((obj) => obj.title);
+    setAlbums(albumsTitle);
     setSelectedArtist(artist.name);
   }
 
@@ -54,8 +54,8 @@ export default function App() {
       </section>
       <hr />
       <section>
-        <h2>Album of {selectedArtist}</h2>
-        <ul>
+        {albums.length > 0  && <h2>Album of {selectedArtist}</h2>}
+         <ul>
           {albums.map((album) => (
             <li>
               <div>
