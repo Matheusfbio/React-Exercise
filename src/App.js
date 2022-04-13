@@ -28,6 +28,7 @@ export default function App() {
   
 
   async function handleClick(artist) {
+   
     const ShowAlbums = await getAlbums(artist.id);
     const Albums = ShowAlbums.map((obj) => obj.title);
     setAlbums(Albums);
