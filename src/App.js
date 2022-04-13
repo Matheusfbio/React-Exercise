@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./Styles.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -6,11 +6,11 @@ export default function App() {
   const [artists, setArtists] = useState([]);
   useEffect(() => {
     getArtists().then((data) => setArtists(data));
-  });
+  },[]);
 
   const [albums, setAlbums] = useState([]);
   const [selectedArtist, setSelectedArtist] = useState();
-  //const [photos, setPhotos] = useState();
+  
 
   async function getArtists() {
     const { data } = await axios.get(
@@ -25,18 +25,15 @@ export default function App() {
     );
     return data;
   }
+  
 
-  // need to ask a parameter with artist values
-  // why assign something to a function call? it doesn't make sense!
-  // here you need to call await getAlbuns(artist.id)
-  // assign it to a variable like in the line 15
-  // use this variable to pass to setAlbuns, like setAlbuns(data
   async function handleClick(artist) {
-    const getAlb = await getAlbums(artist.id);
-    const Albums = getAlb.map((obj) => obj.title);
+    const ShowAlbums = await getAlbums(artist.id);
+    const Albums = ShowAlbums.map((obj) => obj.title);
     setAlbums(Albums);
     setSelectedArtist(artist.name);
   }
+
   return (
     <div className="App">
       <h1>Fake Music Database</h1>
@@ -58,10 +55,10 @@ export default function App() {
       <section>
         <h2>Album of {selectedArtist}</h2>
         <ul>
-          {albums.map((alb) => (
+          {albums.map((album) => (
             <li>
               <div>
-                <strong>Title:</strong> {alb}
+                <strong>Title:</strong> {album}
               </div>
             </li>
           ))}
